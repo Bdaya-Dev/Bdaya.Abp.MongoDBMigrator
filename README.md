@@ -1,0 +1,1 @@
+# Bdaya.Abp.MongoDBMigrator
