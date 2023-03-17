@@ -10,15 +10,14 @@ using Volo.Abp.Data;
 public class TestMongoDbContext1 : AbpMongoDbContext, ITestMongoDbContext1
 {
     public string ContextId => "TestContext1";
-    public IMongoCollection<MongoDBMigrationHistoryEntry> MigrationHistory =>
-        Collection<MongoDBMigrationHistoryEntry>();
+    public IMongoCollection<BdayaAbpMongoDBMigrationHistoryEntry> MigrationHistory =>
+        Collection<BdayaAbpMongoDBMigrationHistoryEntry>();
 
     public IMongoCollection<TestEntity1> Entity1 => Collection<TestEntity1>();
     public IMongoCollection<TestEntity2> Entity2 => Collection<TestEntity2>();
 
     protected override void CreateModel(IMongoModelBuilder modelBuilder)
     {
-        base.CreateModel(modelBuilder);
         modelBuilder.ConfigureMigrations();
     }
 }

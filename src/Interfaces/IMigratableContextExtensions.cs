@@ -5,7 +5,7 @@ public static class IMigratableContextExtensions
 {
     public static void ConfigureMigrations(this IMongoModelBuilder builder)
     {
-        builder.Entity<MongoDBMigrationHistoryEntry>(e =>
+        builder.Entity<BdayaAbpMongoDBMigrationHistoryEntry>(e =>
         {
             e.CollectionName = "_MigrationHistory";
         });

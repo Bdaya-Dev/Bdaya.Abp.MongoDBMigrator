@@ -12,7 +12,7 @@ using Volo.Abp.Guids;
 
 //[ExposeServices(typeof(IMongoDBVersionedMigrator))]
 public class Context1_V1_MigrateSomething
-    : MongoDBVersionedMigratorBase<ITestMongoDbContext1>,
+    : BdayaAbpMongoDBVersionedMigratorBase<ITestMongoDbContext1>,
         IScopedDependency
 {
     public override int? BaseVersion => 1;

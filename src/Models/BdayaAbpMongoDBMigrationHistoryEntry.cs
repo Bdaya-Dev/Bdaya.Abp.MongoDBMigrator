@@ -2,9 +2,9 @@
 using System;
 using Volo.Abp.Domain.Entities;
 
-public class MongoDBMigrationHistoryEntry : Entity<Guid>
+public class BdayaAbpMongoDBMigrationHistoryEntry : Entity<Guid>
 {
-    public MongoDBMigrationHistoryEntry(Guid id)
+    public BdayaAbpMongoDBMigrationHistoryEntry(Guid id)
         : base(id) { }
 
     public required string ContextId { get; set; }

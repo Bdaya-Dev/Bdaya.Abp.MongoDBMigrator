@@ -4,7 +4,7 @@ using MongoDB.Driver;
 using System;
 using System.Threading.Tasks;
 
-public interface IMongoDBVersionedMigrator
+public interface IBdayaAbpMongoDBVersionedMigrator
 {
     int? BaseVersion { get; }
     string? VersionName { get; }
@@ -14,29 +14,29 @@ public interface IMongoDBVersionedMigrator
     /// Migrates from BaseVersion - 1 to BaseVersion
     /// </summary>
     /// <returns></returns>
-    Task Up(IAbpMigratableMongoDbContext context, IClientSessionHandle session);
+    Task Up(IBdayaAbpMigratableMongoDbContext context, IClientSessionHandle session);
 
     /// <summary>
     /// Migrates from BaseVersion - 1 to BaseVersion within a transaction
     /// </summary>
     /// <returns></returns>
-    Task UpTransactioned(IAbpMigratableMongoDbContext context, IClientSessionHandle session);
+    Task UpTransactioned(IBdayaAbpMigratableMongoDbContext context, IClientSessionHandle session);
 
     /// <summary>
     /// Migrates from BaseVersion to BaseVersion - 1
     /// </summary>
     /// <returns></returns>
-    Task Down(IAbpMigratableMongoDbContext context, IClientSessionHandle session);
+    Task Down(IBdayaAbpMigratableMongoDbContext context, IClientSessionHandle session);
 
     /// <summary>
     /// Migrates from BaseVersion to BaseVersion - 1
     /// </summary>
     /// <returns></returns>
-    Task DownTransactioned(IAbpMigratableMongoDbContext context, IClientSessionHandle session);
+    Task DownTransactioned(IBdayaAbpMigratableMongoDbContext context, IClientSessionHandle session);
 }
 
-public interface IMongoDBVersionedMigrator<T> : IMongoDBVersionedMigrator
-    where T : IAbpMigratableMongoDbContext
+public interface IBdayaAbpMongoDBVersionedMigrator<T> : IBdayaAbpMongoDBVersionedMigrator
+    where T : IBdayaAbpMigratableMongoDbContext
 {
     /// <summary>
     /// Migrates from BaseVersion - 1 to BaseVersion

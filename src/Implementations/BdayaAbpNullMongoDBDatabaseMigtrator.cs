@@ -7,10 +7,26 @@ using System.Threading;
 using System.Threading.Tasks;
 using Volo.Abp.DependencyInjection;
 
-public class NullMongoDBMigtrator : IMongoDBMigrator
+public class BdayaAbpNullMongoDBDatabaseMigtrator : IBdayaAbpMongoDBDatabaseMigrator
 {
     public Task DowngradeDatabase(
-        IAbpMigratableMongoDbContext context,
+        IBdayaAbpMigratableMongoDbContext context,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return Task.CompletedTask;
+    }
+
+    public Task MigrateFromConfig(
+        IEnumerable<IBdayaAbpMigratableMongoDbContext> contexts,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return Task.CompletedTask;
+    }
+
+    public Task MigrateFromConfig(
+        IBdayaAbpMigratableMongoDbContext context,
         CancellationToken cancellationToken = default
     )
     {
@@ -18,7 +34,7 @@ public class NullMongoDBMigtrator : IMongoDBMigrator
     }
 
     public Task UpdateDatabaseToVersion(
-        IAbpMigratableMongoDbContext context,
+        IBdayaAbpMigratableMongoDbContext context,
         int version,
         CancellationToken cancellationToken = default
     )
@@ -27,7 +43,7 @@ public class NullMongoDBMigtrator : IMongoDBMigrator
     }
 
     public Task UpgradeDatabase(
-        IAbpMigratableMongoDbContext context,
+        IBdayaAbpMigratableMongoDbContext context,
         CancellationToken cancellationToken = default
     )
     {

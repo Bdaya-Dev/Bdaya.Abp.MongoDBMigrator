@@ -14,6 +14,9 @@ public class BdayaAbpMongoDBMigratorModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        context.Services.AddScoped(typeof(IMongoDBMigrator), typeof(DefaultMongoDBMigrator));
+        context.Services.AddScoped(
+            typeof(IBdayaAbpMongoDBDatabaseMigrator),
+            typeof(BdayaAbpDefaultMongoDBDatabaseMigrator)
+        );
     }
 }

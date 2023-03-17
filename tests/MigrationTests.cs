@@ -15,11 +15,11 @@ public class MigrationTests : MongoDbTestBase
 {
     private readonly IMongoDbContextProvider<ITestMongoDbContext1> _context1Provider;
     private readonly IMongoDbContextProvider<ITestMongoDbContext2> _context2Provider;
-    private readonly IMongoDBMigrator _migrator;
+    private readonly IBdayaAbpMongoDBDatabaseMigrator _migrator;
 
     public MigrationTests()
     {
-        _migrator = ServiceProvider.GetRequiredService<IMongoDBMigrator>();
+        _migrator = ServiceProvider.GetRequiredService<IBdayaAbpMongoDBDatabaseMigrator>();
 
         _context1Provider = ServiceProvider.GetRequiredService<
             IMongoDbContextProvider<ITestMongoDbContext1>

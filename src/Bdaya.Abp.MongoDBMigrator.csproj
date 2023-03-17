@@ -1,8 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<LangVersion>latest</LangVersion>
-		<Version>0.2.0</Version>
+		<Version>0.4.1</Version>
 		<NoWarn>$(NoWarn);CS1591</NoWarn>
+		<PackageId>Bdaya.Abp.MongoDBMigrator</PackageId>
+		<Company>Bdaya Development</Company>
+		<PackageTags>ABP;MongoDB;Migrator;Migration</PackageTags>
+		<Description>An ABP module that standarizes mongodb schema migrations</Description>
 		<TargetFramework>net7.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<PackageIcon>icon.jpg</PackageIcon>

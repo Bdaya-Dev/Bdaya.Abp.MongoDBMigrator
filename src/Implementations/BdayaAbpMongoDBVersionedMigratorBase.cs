@@ -5,11 +5,11 @@ using System;
 using System.Threading.Tasks;
 using Volo.Abp.DependencyInjection;
 
-[ExposeServices(typeof(IMongoDBVersionedMigrator))]
-public abstract class MongoDBVersionedMigratorBase<T>
-    : IMongoDBVersionedMigrator<T>,
+[ExposeServices(typeof(IBdayaAbpMongoDBVersionedMigrator))]
+public abstract class BdayaAbpMongoDBVersionedMigratorBase<T>
+    : IBdayaAbpMongoDBVersionedMigrator<T>,
         IScopedDependency
-    where T : IAbpMigratableMongoDbContext
+    where T : IBdayaAbpMigratableMongoDbContext
 {
     public abstract int? BaseVersion { get; }
     public abstract string VersionName { get; }
@@ -17,8 +17,8 @@ public abstract class MongoDBVersionedMigratorBase<T>
 
     public virtual Task Down(T context, IClientSessionHandle session) => Task.CompletedTask;
 
-    Task IMongoDBVersionedMigrator.Down(
-        IAbpMigratableMongoDbContext context,
+    Task IBdayaAbpMongoDBVersionedMigrator.Down(
+        IBdayaAbpMigratableMongoDbContext context,
         IClientSessionHandle session
     )
     {
@@ -32,8 +32,8 @@ public abstract class MongoDBVersionedMigratorBase<T>
     public virtual Task DownTransactioned(T context, IClientSessionHandle session) =>
         Task.CompletedTask;
 
-    Task IMongoDBVersionedMigrator.DownTransactioned(
-        IAbpMigratableMongoDbContext context,
+    Task IBdayaAbpMongoDBVersionedMigrator.DownTransactioned(
+        IBdayaAbpMigratableMongoDbContext context,
         IClientSessionHandle session
     )
     {
@@ -46,8 +46,8 @@ public abstract class MongoDBVersionedMigratorBase<T>
 
     public virtual Task Up(T context, IClientSessionHandle session) => Task.CompletedTask;
 
-    Task IMongoDBVersionedMigrator.Up(
-        IAbpMigratableMongoDbContext context,
+    Task IBdayaAbpMongoDBVersionedMigrator.Up(
+        IBdayaAbpMigratableMongoDbContext context,
         IClientSessionHandle session
     )
     {
@@ -61,8 +61,8 @@ public abstract class MongoDBVersionedMigratorBase<T>
     public virtual Task UpTransactioned(T context, IClientSessionHandle session) =>
         Task.CompletedTask;
 
-    Task IMongoDBVersionedMigrator.UpTransactioned(
-        IAbpMigratableMongoDbContext context,
+    Task IBdayaAbpMongoDBVersionedMigrator.UpTransactioned(
+        IBdayaAbpMigratableMongoDbContext context,
         IClientSessionHandle session
     )
     {

@@ -7,7 +7,7 @@ using Volo.Abp.Data;
 using Volo.Abp.MongoDB;
 
 [ConnectionStringName("Default")]
-public interface ITestMongoDbContext1 : IAbpMongoDbContext, IAbpMigratableMongoDbContext
+public interface ITestMongoDbContext1 : IAbpMongoDbContext, IBdayaAbpMigratableMongoDbContext
 {
     IMongoCollection<TestEntity1> Entity1 { get; }
     IMongoCollection<TestEntity2> Entity2 { get; }

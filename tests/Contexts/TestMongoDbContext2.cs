@@ -10,8 +10,8 @@ using Volo.Abp.Data;
 public class TestMongoDbContext2 : AbpMongoDbContext, ITestMongoDbContext2
 {
     public string ContextId => "TestContext2";
-    public IMongoCollection<MongoDBMigrationHistoryEntry> MigrationHistory =>
-        Collection<MongoDBMigrationHistoryEntry>();
+    public IMongoCollection<BdayaAbpMongoDBMigrationHistoryEntry> MigrationHistory =>
+        Collection<BdayaAbpMongoDBMigrationHistoryEntry>();
 
     public IMongoCollection<TestEntity3> Entity3 => Collection<TestEntity3>();
 }

@@ -1,8 +1,8 @@
 ﻿namespace Bdaya.Abp.MongoDBMigrator;
 
 using DnsClient.Internal;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using System;
@@ -11,34 +11,86 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Volo.Abp;
-using Volo.Abp.DependencyInjection;
 using Volo.Abp.Guids;
 
-public class DefaultMongoDBMigrator : IMongoDBMigrator
+public class BdayaAbpDefaultMongoDBDatabaseMigrator : IBdayaAbpMongoDBDatabaseMigrator
 {
-    private readonly ILogger<DefaultMongoDBMigrator> _logger;
-    public virtual IEnumerable<IMongoDBVersionedMigrator> AllVersionedMigrators { get; }
+    private readonly ILogger<BdayaAbpDefaultMongoDBDatabaseMigrator> _logger;
+    public virtual IEnumerable<IBdayaAbpMongoDBVersionedMigrator> AllVersionedMigrators { get; }
 
-    public virtual IEnumerable<IMongoDBVersionedMigrator> FilteredMigrators(Type contextType)
+    public virtual IEnumerable<IBdayaAbpMongoDBVersionedMigrator> FilteredMigrators(
+        Type contextType
+    )
     {
         return AllVersionedMigrators.Where(x => x.ContextType.IsAssignableFrom(contextType));
     }
 
     public IGuidGenerator GuidGenerator { get; }
 
-    public DefaultMongoDBMigrator(
-        ILogger<DefaultMongoDBMigrator> logger,
+    public BdayaAbpMongoDBMigratorOptions Config { get; }
+
+    public BdayaAbpDefaultMongoDBDatabaseMigrator(
+        ILogger<BdayaAbpDefaultMongoDBDatabaseMigrator> logger,
         IGuidGenerator guidGenerator,
-        IEnumerable<IMongoDBVersionedMigrator> versionedMigrators
+        IEnumerable<IBdayaAbpMongoDBVersionedMigrator> versionedMigrators,
+        IOptions<BdayaAbpMongoDBMigratorOptions> config
     )
     {
         _logger = logger;
         GuidGenerator = guidGenerator;
         AllVersionedMigrators = versionedMigrators;
+        Config = config.Value;
+    }
+
+    public async Task MigrateFromConfig(
+        IBdayaAbpMigratableMongoDbContext context,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var contextIds = Config.ContextIds;
+        if (contextIds != null && contextIds.Count > 0 && !contextIds.Contains(context.ContextId))
+        {
+            //don't handle ContextIds that aren't opted in if ContextIds exists
+            return;
+        }
+
+        switch (Config.Behavior)
+        {
+            case BdayaAbpMongoDBMigratorBehaviors.Down:
+                await DowngradeDatabase(context, cancellationToken);
+                break;
+            case BdayaAbpMongoDBMigratorBehaviors.Up:
+                await UpgradeDatabase(context, cancellationToken);
+                break;
+            case BdayaAbpMongoDBMigratorBehaviors.Version:
+                var version = Config.Version;
+                if (!version.HasValue)
+                {
+                    throw new ArgumentNullException(
+                        "version",
+                        "for Version behavior, the Version parameter must be set"
+                    );
+                }
+                await UpdateDatabaseToVersion(context, version.Value, cancellationToken);
+                break;
+            default:
+                throw new NotImplementedException();
+        }
+    }
+
+    public async Task MigrateFromConfig(
+        IEnumerable<IBdayaAbpMigratableMongoDbContext> contexts,
+        CancellationToken cancellationToken = default
+    )
+    {
+        foreach (var item in contexts)
+        {
+            await MigrateFromConfig(item, cancellationToken);
+        }
     }
 
     public async Task UpgradeDatabase(
-        IAbpMigratableMongoDbContext context,
+        IBdayaAbpMigratableMongoDbContext context,
         CancellationToken cancellationToken = default
     )
     {
@@ -73,7 +125,7 @@ public class DefaultMongoDBMigrator : IMongoDBMigrator
     }
 
     public async Task DowngradeDatabase(
-        IAbpMigratableMongoDbContext context,
+        IBdayaAbpMigratableMongoDbContext context,
         CancellationToken cancellationToken = default
     )
     {
@@ -149,7 +201,7 @@ public class DefaultMongoDBMigrator : IMongoDBMigrator
     }
 
     public async Task UpdateDatabaseToVersion(
-        IAbpMigratableMongoDbContext context,
+        IBdayaAbpMigratableMongoDbContext context,
         int version,
         CancellationToken cancellationToken = default
     )
@@ -260,7 +312,7 @@ public class DefaultMongoDBMigrator : IMongoDBMigrator
     }
 
     private async Task DoUpgrade(
-        IAbpMigratableMongoDbContext context,
+        IBdayaAbpMigratableMongoDbContext context,
         IClientSessionHandle session,
         int currentVersion,
         int? targetVersion,
@@ -303,7 +355,7 @@ public class DefaultMongoDBMigrator : IMongoDBMigrator
                 {
                     await context.MigrationHistory.InsertOneAsync(
                         session,
-                        new MongoDBMigrationHistoryEntry(id: GuidGenerator.Create())
+                        new BdayaAbpMongoDBMigrationHistoryEntry(id: GuidGenerator.Create())
                         {
                             CreatedAt = DateTime.UtcNow,
                             ContextId = context.ContextId,
