@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<LangVersion>latest</LangVersion>
-		<Version>0.4.1</Version>
+		<Version>0.4.3</Version>
 		<NoWarn>$(NoWarn);CS1591</NoWarn>
 		<PackageId>Bdaya.Abp.MongoDBMigrator</PackageId>
 		<Company>Bdaya Development</Company>
@@ -10,11 +10,15 @@
 		<TargetFramework>net7.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<PackageIcon>icon.jpg</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<RepositoryUrl>https://github.com/Bdaya-Dev/Bdaya.Abp.MongoDBMigrator</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>		
+		<RepositoryType>git</RepositoryType>				
 	</PropertyGroup>
 	<ItemGroup>
 		<None Include="../icon.jpg" Pack="true" Visible="false" PackagePath="" />
+		<None Include="../README.md" Pack="true" Visible="false" PackagePath="" />
+		<None Include="../LICENSE" Pack="true" Visible="false" PackagePath="" />
 
 		<PackageReference Include="Volo.Abp.MongoDB" Version="7.0.0" />
 		<PackageReference Update="ConfigureAwait.Fody" Version="3.3.2" />
