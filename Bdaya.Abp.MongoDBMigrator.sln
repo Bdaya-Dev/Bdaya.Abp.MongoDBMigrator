@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33502.453
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bdaya.Abp.MongoDBMigrator", "src\Bdaya.Abp.MongoDBMigrator.csproj", "{5F510079-AA4E-42E0-812A-428EE0A8D119}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bdaya.Abp.MongoDBMigrator.Tests", "tests\Bdaya.Abp.MongoDBMigrator.Tests.csproj", "{0D12140B-910A-4CFB-9273-21E39D9B4416}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B47522BB-2DC9-428A-995F-F1092A47BF4D}"
+	ProjectSection(SolutionItems) = preProject
+		icon.jpg = icon.jpg
+		PackAll.ps1 = PackAll.ps1
+		PublishAll.ps1 = PublishAll.ps1
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5F510079-AA4E-42E0-812A-428EE0A8D119}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F510079-AA4E-42E0-812A-428EE0A8D119}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F510079-AA4E-42E0-812A-428EE0A8D119}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F510079-AA4E-42E0-812A-428EE0A8D119}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D12140B-910A-4CFB-9273-21E39D9B4416}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D12140B-910A-4CFB-9273-21E39D9B4416}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D12140B-910A-4CFB-9273-21E39D9B4416}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D12140B-910A-4CFB-9273-21E39D9B4416}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CD18EF1A-1EC3-472D-AF34-36D85B18DE95}
+	EndGlobalSection
+EndGlobal

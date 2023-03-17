@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<LangVersion>latest</LangVersion>
+		<Version>1.0.0</Version>
+		<NoWarn>$(NoWarn);CS1591</NoWarn>
+		<TargetFramework>net7.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
+		<PackageReference Include="NSubstitute" Version="4.4.0" />
+		<PackageReference Include="Shouldly" Version="4.1.0" />
+		<PackageReference Include="xunit" Version="2.4.2" />
+		<PackageReference Include="xunit.extensibility.execution" Version="2.4.2" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.5" />
+		<PackageReference Include="Volo.Abp.Autofac" Version="7.0.0" />
+		<PackageReference Include="Volo.Abp.Authorization" Version="7.0.0" />
+		<PackageReference Include="Volo.Abp.TestBase" Version="7.0.0" />
+		<PackageReference Include="Mongo2Go" Version="3.1.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+
+		<ProjectReference Include="..\src\Bdaya.Abp.MongoDBMigrator.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Update="ConfigureAwait.Fody" Version="3.3.2" />
+		<PackageReference Update="Fody" Version="6.6.4">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+</Project>

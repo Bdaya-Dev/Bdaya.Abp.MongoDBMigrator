@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<LangVersion>latest</LangVersion>
+		<Version>0.1.0</Version>
+		<NoWarn>$(NoWarn);CS1591</NoWarn>
+		<TargetFramework>net7.0</TargetFramework>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Include="../icon.jpg" Pack="true" Visible="false" PackagePath="" />
+
+		<PackageReference Include="Volo.Abp.MongoDB" Version="7.0.0" />
+		<PackageReference Update="ConfigureAwait.Fody" Version="3.3.2" />
+		<PackageReference Update="Fody" Version="6.6.4">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+</Project>
