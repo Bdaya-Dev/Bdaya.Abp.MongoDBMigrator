@@ -10,6 +10,8 @@
 		<TargetFramework>net7.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<PackageIcon>icon.jpg</PackageIcon>
+		<RepositoryUrl>https://github.com/Bdaya-Dev/Bdaya.Abp.MongoDBMigrator</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>		
 	</PropertyGroup>
 	<ItemGroup>
 		<None Include="../icon.jpg" Pack="true" Visible="false" PackagePath="" />
